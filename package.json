@@ -1,0 +1,15 @@
+{
+  "name": "js-nft-monitor",
+  "version": "0.0.1",
+  "description": "print out nft monitor",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Alemayhu",
+  "license": "ISC"
+}
