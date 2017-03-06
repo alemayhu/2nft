@@ -18,14 +18,19 @@ body {
   <body ng-controller="MainController">
     <div>
       <h1>2nft</h1>
-      <i ng-if="iptables_version != 'xyz'">using {{ iptables_version }}</i>
       <div>
-	<textarea rows="7" cols="200" type="text" ng-model="old_rules" 
-					   placeholder="Enter you legacy rules here">
+	<i ng-if="iptables_version != 'xyz'">using {{ iptables_version }}</i>
+	<a href="/help">--help</a>
+      </div>
+      <div>
+	<textarea 
+	ng-change="old_rules_changed(this)"
+    rows="7" cols="200" type="text" ng-model="old_rules" 
+				    placeholder="Enter you legacy rules here">
 	</textarea>
       </div>
       <hr>
-      <pre>{{old_rules}}</pre>
+      <pre>{{new_rules}}</pre>
     </div>
   </body>
 </html>

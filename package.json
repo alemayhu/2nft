@@ -4,6 +4,7 @@
   "description": "print out nft monitor",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.0",
     "nodemon": "^1.11.0"
   },
