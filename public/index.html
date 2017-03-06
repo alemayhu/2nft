@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <meta charset="UTF-8">
+    <title>iptables2nft</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js">
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>iptables2nft</h1>
+      <label>Enter you legacy rules here:</label>
+      <div>
+	<textarea type="text" ng-model="old_rules" placeholder="Enter a name here">
+      </div>
+	</textarea>
+	<hr>
+	<code>{{old_rules}}</code>
+    </div>
+  </body>
+</html>

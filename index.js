@@ -3,9 +3,16 @@ var cmd = require('node-cmd');
 
 var app = express();
 
+app.use(express.static('public'))
+
+app.post('/translate', function (req, res) {
+  console.log(res);
+  res.send(req);
+});
+
 app.get('/*', function(req, res){
   // FIXME: figure out how to run without root privileges
-  cmd.get('sudo nft export json', function(data) {
+  cmd.get('x', function(data) {
     res.json(JSON.parse(data));
   });
 });
