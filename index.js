@@ -10,10 +10,9 @@ app.post('/translate', function (req, res) {
   res.send(req);
 });
 
-app.get('/*', function(req, res){
-  // FIXME: figure out how to run without root privileges
-  cmd.get('x', function(data) {
-    res.json(JSON.parse(data));
+app.get('/version', function(req, res){
+  cmd.get('iptables-translate --version', function(data) {
+    res.send(data);
   });
 });
 
