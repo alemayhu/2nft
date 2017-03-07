@@ -7,8 +7,7 @@ var app = express();
 app.use(express.static('public'))
 app.use(bodyParser.json());
 
-app.post('/translate', function (req, res) {
-  var rules = req.body.old_rules.split("\n");
+var convert = function(rules, debug = false) {
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
     var rule = rules[i];
@@ -22,6 +21,9 @@ app.post('/translate', function (req, res) {
       // We are skipping emtpy lines
     }
     var translate_cmd = "iptables-translate "+rule;
+    if (debug) {
+      new_rules += "$ "+translate_cmd+"\n";
+    }
     console.log(translate_cmd);
     try {
       new_rules += execSync(translate_cmd);
@@ -29,7 +31,12 @@ app.post('/translate', function (req, res) {
       new_rules += "# "+e.message.split('\n').join(" ")+"\n";
     }
   }
-  res.send(new_rules);
+  return new_rules;
+};
+
+app.post('/translate', function (req, res) {
+  var rules = req.body.old_rules.split("\n");
+  res.send(convert(rules, req.body.is_debug));
 });
 
 app.get('/version', function(req, res){

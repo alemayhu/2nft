@@ -11,7 +11,10 @@ let controller = app.controller('MainController', ['$scope', '$http', function (
       headers: {
 	'Content-Type': 'application/json'
       },
-      data: { old_rules: old_rules }
+      data: {
+        old_rules: old_rules,
+        is_debug: false
+      }
     }
     $http(req).then(function(res){
       console.log('new'+res.data);
