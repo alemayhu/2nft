@@ -14,6 +14,9 @@ app.post('/translate', function (req, res) {
     var rule = rules[i]
       .replace("# ", "")
       .replace("iptables", "");
+    if (!rule || rule.length == 0) { continue;
+      // We are skipping emtpy lines
+    }
     var translate_cmd = "iptables-translate "+rule;
     console.log(translate_cmd);
     try {
