@@ -26,7 +26,7 @@ app.post('/translate', function (req, res) {
 });
 
 app.get('/version', function(req, res){
-  var iptables_version = execSync('iptables-translate --version');
+  var iptables_version = execSync('git -C ~/src/netfilter.org/iptables describe');
   res.send(iptables_version);
 });
 
