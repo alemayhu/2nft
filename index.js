@@ -14,7 +14,11 @@ app.post('/translate', function (req, res) {
     var rule = rules[i].replace("iptables", "");
     var translate_cmd = "iptables-translate "+rule;
     console.log(translate_cmd);
-    new_rules += execSync(translate_cmd);
+    try {
+      new_rules += execSync(translate_cmd);
+    } catch (e) {
+      new_rules += "# "+e.message.split('\n').join(" ");
+    }
   }
   res.send(new_rules);
 });
