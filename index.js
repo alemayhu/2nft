@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 var express = require('express');
-var cmd = require('node-cmd');
+var execSync = require('child_process').execSync;
 
 var app = express();
 
@@ -8,14 +8,15 @@ app.use(express.static('public'))
 app.use(bodyParser.json());
 
 app.post('/translate', function (req, res) {
-  var rule = req.body.old_rules.replace("iptables ", "");
-  var translate_cmd = "iptables-translate "+rule;
-
-  console.log(translate_cmd);
-  cmd.get(translate_cmd, function(data) {
-    console.log(data);
-    res.send(data);
-  });
+  var rules = req.body.old_rules.replace("iptables", "").split("\n");
+  var new_rules = '';
+  for (var i = 0; i < rules.length; i++) {
+    var rule = rules[i];
+    var translate_cmd = "iptables-translate "+rule;
+    console.log(translate_cmd);
+    new_rules += execSync(translate_cmd);
+  }
+  res.send(new_rules);
 });
 
 app.get('/version', function(req, res){
