@@ -23,3 +23,6 @@ docker_run: docker
 	docker run -dit -p 8080:3000 ${project}
 docker_push:
 	docker push ${project}
+ttd:
+	-docker stop `docker ps |grep npm|awk '{ print $1 }'`
+	$(MAKE) docker_run
