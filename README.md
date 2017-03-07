@@ -1,3 +1,4 @@
-# js-nft-monitor
+# 2nft
 
-Small javascript web application to print output of `nft export json`.
+web application to let you translate your legacy rules to nftables via
+iptables-translate.
