@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.post('/translate', function (req, res) {
   var rule = req.body.old_rules.replace("iptables ", "");
-  let translate_cmd = "iptables-translate "+rule;
+  var translate_cmd = "iptables-translate "+rule;
 
   console.log(translate_cmd);
   cmd.get(translate_cmd, function(data) {
