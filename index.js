@@ -19,7 +19,7 @@ app.post('/translate', function (req, res) {
     try {
       new_rules += execSync(translate_cmd);
     } catch (e) {
-      new_rules += "# "+e.message.split('\n').join(" ");
+      new_rules += "# "+e.message.split('\n').join(" ")+"\n";
     }
   }
   res.send(new_rules);
