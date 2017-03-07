@@ -20,15 +20,13 @@ app.post('/translate', function (req, res) {
 });
 
 app.get('/version', function(req, res){
-  cmd.get('iptables-translate --version', function(data) {
-    res.send(data);
-  });
+  var iptables_version = execSync('iptables-translate --version');
+  res.send(iptables_version);
 });
 
 app.get('/help', function(req, res){
-  cmd.get('iptables-translate --help', function(data) {
-    res.send("<pre>"+data+"</pre>");
-  });
+  var iptables_help = execSync('iptables-translate --help');
+  res.send("<pre>"+iptables_help+"</pre>");
 });
 
 app.listen(3000);
