@@ -17,7 +17,7 @@ app.post('/translate', function (req, res) {
       // TODO: also handle single comment
     }
 
-    rule = rule.replace("# ", "").replace("iptables", "");
+    rule = rule.replace("# ", "").replace("iptables", "").replace("sudo", "");
     if (!rule || rule.trim().length == 0) { continue;
       // We are skipping emtpy lines
     }
