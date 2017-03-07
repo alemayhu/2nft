@@ -20,6 +20,6 @@ docker:
 docker_deploy: docker docker_push
 	echo "Pushed to docker, https://hub.docker.com/r/${project}"
 docker_run: docker
-	docker run ${project}
+	docker run -dit -p 8080:3000 ${project}
 docker_push:
 	docker push ${project}
