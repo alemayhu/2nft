@@ -11,9 +11,13 @@ app.post('/translate', function (req, res) {
   var rules = req.body.old_rules.split("\n");
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
-    var rule = rules[i]
-      .replace("# ", "")
-      .replace("iptables", "");
+    var rule = rules[i];
+    if (rule.startsWith("##")) { continue;
+      // assume this is comment.
+      // TODO: also handle single comment
+    }
+
+    rule = rule.replace("# ", "").replace("iptables", "");
     if (!rule || rule.length == 0) { continue;
       // We are skipping emtpy lines
     }
