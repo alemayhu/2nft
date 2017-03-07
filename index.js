@@ -11,7 +11,9 @@ app.post('/translate', function (req, res) {
   var rules = req.body.old_rules.split("\n");
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
-    var rule = rules[i].replace("iptables", "");
+    var rule = rules[i]
+      .replace("# ", "")
+      .replace("iptables", "");
     var translate_cmd = "iptables-translate "+rule;
     console.log(translate_cmd);
     try {
