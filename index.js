@@ -7,7 +7,7 @@ var app = express();
 app.use(express.static('public'))
 app.use(bodyParser.json());
 
-var convert = function(rules, debug = false) {
+var convert = function(rules, debug) {
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
     var rule = rules[i];
