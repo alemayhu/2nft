@@ -3,6 +3,7 @@ FROM node
 ENV PKG_CONFIG_PATH "/usr/local/lib/pkgconfig"
 ENV NFT_DEV "/tmp/Scripts/nft-dev"
 ENV APP_DIR "/srv/2nft"
+ENV WEB_USER "tester"
 
 RUN apt-get update
 RUN apt-get install -y pkg-config git sudo
@@ -22,6 +23,14 @@ COPY index.js $APP_DIR/index.js
 COPY public $APP_DIR/public
 
 RUN npm install
+
+RUN mkdir /home/$WEB_USER
+
+RUN useradd -M $WEB_USER
+RUN usermod -L $WEB_USER
+
+RUN chown -R $WEB_USER:$WEB_USER /home/$WEB_USER
+RUN chown -R $WEB_USER:$WEB_USER $APP_DIR
 
 EXPOSE 3000
 CMD ["npm", "start"]
