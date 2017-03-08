@@ -1,5 +1,6 @@
 FROM node
 
+ENV START_SCRIPT "/srv/start.bash"
 ENV PKG_CONFIG_PATH "/usr/local/lib/pkgconfig"
 ENV NFT_DEV "/tmp/Scripts/nft-dev"
 ENV APP_DIR "/srv/2nft"
@@ -21,6 +22,7 @@ WORKDIR $APP_DIR
 COPY package.json $APP_DIR/package.json
 COPY index.js $APP_DIR/index.js
 COPY public $APP_DIR/public
+COPY scripts/unprivileged.bash $START_SCRIPT
 
 RUN npm install
 
@@ -33,4 +35,4 @@ RUN chown -R $WEB_USER:$WEB_USER /home/$WEB_USER
 RUN chown -R $WEB_USER:$WEB_USER $APP_DIR
 
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["/bin/bash", $START_SCRIPT]

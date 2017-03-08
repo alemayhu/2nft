@@ -49,4 +49,9 @@ app.get('/help', function(req, res){
   res.send("<pre>"+iptables_help+"</pre>");
 });
 
+app.get('/werbinich', function(req, res){
+  var whoami = execSync('whoami');
+  res.send("<pre>"+whoami+"</pre>");
+});
+
 app.listen(3000);
