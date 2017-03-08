@@ -1,6 +1,7 @@
 iptables_repo ?=git://git.netfilter.org/iptables
 iptables_dir ?=~/src/netfilter.org/iptables
 project ?=alemayhu/2nft
+port ?= 8080
 
 serve:
 	./node_modules/.bin/nodemon index.js
@@ -20,7 +21,7 @@ docker:
 docker_deploy: docker docker_push
 	echo "Pushed to docker, https://hub.docker.com/r/${project}"
 docker_run: docker
-	docker run -dit -p 8080:3000 ${project}
+	docker run -dit -p $(port):3000 ${project}
 docker_push:
 	docker push ${project}
 ttd:
