@@ -9,12 +9,12 @@ You have two options available from the [Makefile](./Makefile) targets.
 
 ### [npm](https://www.npmjs.com/)
 
-  make setup
-  make serve
+    make setup
+    make serve
 
 ### [Docker](https://www.docker.com/)
 
-  make docker_run
+    make docker_run
 
 
 [0]: https://netfilter.org/projects/nftables/
