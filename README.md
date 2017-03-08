@@ -14,7 +14,6 @@ You have two options available from the [Makefile](./Makefile) targets.
 
 ### [Docker](https://www.docker.com/)
 
-    make docker_run
-
+    docker run -dit -p 8080:3000 alemayhu/2nft
 
 [0]: https://netfilter.org/projects/nftables/
