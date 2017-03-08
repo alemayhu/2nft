@@ -37,6 +37,7 @@ RUN usermod -L $WEB_USER
 # Fix the permissions
 RUN chown -R $WEB_USER:$WEB_USER /home/$WEB_USER
 RUN chown -R $WEB_USER:$WEB_USER $APP_DIR
+RUN chmod +x $START_SCRIPT
 
 EXPOSE 3000
-CMD ["/bin/bash", $START_SCRIPT]
+CMD $START_SCRIPT
