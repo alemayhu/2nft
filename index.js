@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 var convert = function(rules, debug) {
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
-    var rule = rules[i];
+    var rule = rules[i].match(/[A-Za-z-_0-9\:\,/]/g).join("");
     if (rule.startsWith("##")) { continue;
       // assume this is comment.
       // TODO: also handle single comment
