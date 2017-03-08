@@ -10,7 +10,7 @@ ENV WEB_USER_HOME "/home/$WEB_USER"
 RUN apt-get update
 RUN apt-get install -y pkg-config git sudo
 
-# Get helper make sure we get iptables
+# Get helper script which helps pull in iptables
 RUN git clone https://github.com/scanf/Scripts /tmp/Scripts
 
 # First install all the dependencies for nftables and friends. Second run clone
