@@ -20,7 +20,7 @@ var convert = function(rules, debug = false) {
     if (!rule || rule.trim().length == 0) { continue;
       // We are skipping emtpy lines
     }
-    var translate_cmd = "iptables-translate "+rule;
+    var translate_cmd = "exec iptables-translate "+rule;
     if (debug) {
       new_rules += "$ "+translate_cmd+"\n";
     }
