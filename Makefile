@@ -25,5 +25,5 @@ docker_run: docker
 docker_push:
 	docker push ${project}
 ttd:
-	-docker stop `docker ps |grep npm|awk '{ print $1 }'`
+	-docker stop `docker ps |grep ${port}|awk '{ print $$1 }'`
 	$(MAKE) docker_run
