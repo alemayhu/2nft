@@ -31,10 +31,10 @@ var convert = function(rules, debug) {
       new_rules += execSync(translate_cmd);
     } catch (e) {
       if (debug) {
-        new_rules += "# 🚧 "+rule;
+        new_rules += "# "+e.message.split('\n').join(" ")+"\n";
         continue;
       }
-      new_rules += "# "+e.message.split('\n').join(" ")+"\n";
+      new_rules += "# 🚧 "+rule
     }
   }
   return new_rules;
