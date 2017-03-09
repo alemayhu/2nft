@@ -21,8 +21,8 @@ You have two options using Docker or npm.
     
 The install instructions should work on a Debian Jessie or Fedora 25 install.
 If that's not the case please create a
-[issue][https://github.com/alemayhu/2nft/issues]. If you have found a critical
-issue (security), please send me a private [email][mailto:a@alemayhu.com] so it
+[issue](https://github.com/alemayhu/2nft/issues). If you have found a critical
+issue (security), please send me a private [email](mailto:a@alemayhu.com) so it
 can be addressed.
 
 [0]: https://netfilter.org/projects/nftables/
