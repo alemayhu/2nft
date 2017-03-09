@@ -32,8 +32,13 @@ body {
 				    placeholder="Enter you legacy rules here">
 	</textarea>
       </div>
-      <hr>
+      <hr ng-if="new_rules.length > 0">
       <pre id="new_rules">{{new_rules}}</pre>
+      <div ng-if="new_rules.length > 0">
+      <hr>
+      <p><a href="https://wiki.nftables.org/wiki-nftables/index.php/List_of_available_translations_via_iptables-translate_tool">List of available translations via iptables-translate tool
+      </a></p>
+      </div>
     </div>
   </body>
 </html>
