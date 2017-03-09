@@ -9,6 +9,7 @@ You have two options using Docker or npm.
 
 ### [npm](https://www.npmjs.com/)
 
+    make iptables
     make setup
     make serve
 
