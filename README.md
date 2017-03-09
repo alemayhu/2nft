@@ -25,4 +25,6 @@ If that's not the case please create a
 issue (security), please send me a private [email](mailto:a@alemayhu.com) so it
 can be addressed.
 
+Thanks.
+
 [0]: https://netfilter.org/projects/nftables/
