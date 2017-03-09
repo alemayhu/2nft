@@ -2,6 +2,7 @@ iptables_repo ?=git://git.netfilter.org/iptables
 iptables_dir ?=~/src/netfilter.org/iptables
 project ?=alemayhu/2nft
 port ?= 8080
+hosted =2nft.alemayhu.com
 
 serve:
 	./node_modules/.bin/nodemon index.js
@@ -24,6 +25,11 @@ docker_run: docker
 	docker run -dit -p $(port):3000 ${project}
 docker_push:
 	docker push ${project}
+2nft:
+	docker pull ${project}
+	-docker stop ${hosted}
+	-docker rm ${hosted}
+	docker run -p 7000:3000 --name=${hosted} -m 256m -d ${project}
 ttd:
 	-docker stop `docker ps |grep ${port}|awk '{ print $$1 }'`
 	$(MAKE) docker_run
