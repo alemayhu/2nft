@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 var convert = function(rules, debug) {
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
-    var rule = rules[i].match(/[A-Za-z-_0-9\:\,/]/g).join("");
+    var rule = rules[i];
     if (rule.startsWith("##")) { continue;
       // assume this is comment.
       // TODO: also handle single comment
@@ -20,6 +20,8 @@ var convert = function(rules, debug) {
     if (!rule || rule.trim().length == 0) { continue;
       // We are skipping emtpy lines
     }
+    rule = rule.match(/[A-Za-z-_0-9\:\,/]/g).join("");
+
     var translate_cmd = "exec iptables-translate "+rule;
     if (debug) {
       new_rules += "$ "+translate_cmd+"\n";
