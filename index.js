@@ -20,7 +20,7 @@ var convert = function(rules, debug) {
     if (!rule || rule.trim().length == 0) { continue;
       // We are skipping emtpy lines
     }
-    rule = rule.match(/[A-Za-z-_0-9\:\,/]/g).join("");
+    rule = rule.match(/[A-Za-z-_0-9\:\,\.\!\S+\s+/]/g).join("");
 
     var translate_cmd = "exec iptables-translate "+rule;
     if (debug) {
