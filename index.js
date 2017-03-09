@@ -56,4 +56,8 @@ app.get('/werbinich', function(req, res){
   res.send("<pre>"+whoami+"</pre>");
 });
 
+app.get('*', function(req, res) {
+      res.redirect('/');
+});
+
 app.listen(3000);
