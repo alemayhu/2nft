@@ -5,7 +5,7 @@ iptables-translate.
 
 ## Install
 
-You have two options available from the [Makefile](./Makefile) targets.
+You have two options using Docker or npm.
 
 ### [npm](https://www.npmjs.com/)
 
