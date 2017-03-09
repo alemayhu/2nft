@@ -17,4 +17,12 @@ You have two options using Docker or npm.
 
     docker run -dit -p 8080:3000 alemayhu/2nft
 
+## Bugs
+    
+The install instructions should work on a Debian Jessie or Fedora 25 install.
+If that's not the case please create a
+[issue][https://github.com/alemayhu/2nft/issues]. If you have found a critical
+issue (security), please send me a private [email][mailto:a@alemayhu.com] so it
+can be addressed.
+
 [0]: https://netfilter.org/projects/nftables/
