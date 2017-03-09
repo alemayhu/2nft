@@ -1,7 +1,8 @@
 # 2nft
 
 web application to let you translate your legacy rules to [nftables][0] via
-iptables-translate.
+iptables-translate. If you are interested in how the application is structured
+there is more information in in [Design][./DESIGN.md].
 
 ## Install
 
