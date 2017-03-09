@@ -34,7 +34,7 @@ var convert = function(rules, debug) {
         new_rules += "# "+e.message.split('\n').join(" ")+"\n";
         continue;
       }
-      new_rules += "# 🚧 "+rule
+      new_rules += "# 🚧 "+rule+"\n";
     }
   }
   return new_rules;
