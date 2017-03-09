@@ -7,6 +7,10 @@ var app = express();
 app.use(express.static('public'))
 app.use(bodyParser.json());
 
+var a_log = function(output) {
+  console.log(new Date()+" "+output);
+}
+
 var convert = function(rules, debug) {
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
@@ -26,7 +30,7 @@ var convert = function(rules, debug) {
     if (debug) {
       new_rules += "$ "+translate_cmd+"\n";
     }
-    console.log(translate_cmd);
+    a_log(translate_cmd);
     try {
       new_rules += execSync(translate_cmd);
     } catch (e) {
