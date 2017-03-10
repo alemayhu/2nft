@@ -25,6 +25,7 @@ body {
         <i ng-if="iptables_version != 'xyz'">using iptables-translate {{ iptables_version }}</i>
 	<a href="/help">--help</a>
       </div>
+        <!-- old rules -->
       <div>
 	<textarea 
 	ng-change="old_rules_changed(this)"
@@ -32,12 +33,17 @@ body {
 				    placeholder="Enter you legacy rules here">
 	</textarea>
       </div>
+        <!-- nft rules -->
       <hr ng-if="new_rules.length > 0">
       <pre id="new_rules">{{new_rules}}</pre>
       <div ng-if="new_rules.length > 0">
+        <!-- Links -->
       <hr>
-      <p><a href="https://wiki.nftables.org/wiki-nftables/index.php/List_of_available_translations_via_iptables-translate_tool">List of available translations via iptables-translate tool
-      </a></p>
+      <ul>
+        <li><a href="https://wiki.nftables.org/wiki-nftables/index.php/List_of_available_translations_via_iptables-translate_tool">List of available translations via iptables-translate tool
+          </a></li>
+          <li><a href="https://github.com/alemayhu/2nft">alemayhu/2nft</a></li>
+      </ul>
       </div>
     </div>
   </body>
