@@ -8,13 +8,12 @@
     <script src="app.js"></script>
     <style>
 textarea {
-  width: 90%;
-}
-body {
-  text-align: center;
-}
-#new_rules {
-  text-align: left;
+  width: 97%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFD;
+  font-size: 11pt;
 }
     </style>
   </head>
@@ -22,8 +21,7 @@ body {
     <div>
       <h1>2nft</h1>
       <div>
-        <i ng-if="iptables_version != 'xyz'">using iptables-translate {{ iptables_version }}</i>
-	<a href="/help">--help</a>
+        <h2 ng-if="iptables_version != 'xyz'">using iptables-translate {{ iptables_version }}</h2>
       </div>
         <!-- old rules -->
       <div>
@@ -33,15 +31,18 @@ body {
 				    placeholder="Enter you legacy rules here">
 	</textarea>
       </div>
-        <!-- nft rules -->
-      <hr ng-if="new_rules.length > 0">
-      <pre id="new_rules">{{new_rules}}</pre>
-      <div ng-if="new_rules.length > 0">
-        <!-- Links -->
-      <hr>
+      <div>
+	<!-- nft rules -->
+	<textarea readonly ng-if="new_rules.length > 0"
+		    rows="7" cols="200" type="text" ng-model="new_rules">
+	</textarea>
+      </div>
+      <div>
+        <h3>Useful Links</h3>
       <ul>
-        <li><a href="https://wiki.nftables.org/wiki-nftables/index.php/List_of_available_translations_via_iptables-translate_tool">List of available translations via iptables-translate tool
-          </a></li>
+        <li><a href="https://wiki.nftables.org/wiki-nftables/index.php/List_of_available_translations_via_iptables-translate_tool">List of available translations via iptables-translate tool</a></li>
+          <li><a href="http://patchwork.ozlabs.org/project/netfilter-devel/list/">netfilter-devel patchwork</a></li>
+          <li><a href="/help">iptables-translate --help</a></li>
           <li><a href="https://github.com/alemayhu/2nft">alemayhu/2nft</a></li>
       </ul>
       </div>
