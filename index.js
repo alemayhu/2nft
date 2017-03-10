@@ -22,7 +22,9 @@ var convert = function(rules, debug) {
       // TODO: also handle single comment
     }
 
-    rule = rule.replace("# ", "").replace("iptables", "").replace("sudo", "");
+    rule = rule.replace("# ", "")
+      .replace("ip6tables-translate", "")
+      .replace("iptables", "").replace("sudo", "");
     if (!rule || rule.trim().length == 0) { continue;
       // We are skipping emtpy lines
     }
