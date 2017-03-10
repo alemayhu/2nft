@@ -10,3 +10,7 @@ textarea {
 a {
   color: red;
 }
+
+#download {
+  padding: 12px;
+}
