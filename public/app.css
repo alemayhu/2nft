@@ -6,3 +6,7 @@ textarea {
   background: #FFD;
   font-size: 11pt;
 }
+
+a {
+  color: red;
+}
