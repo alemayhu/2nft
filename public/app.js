@@ -3,7 +3,6 @@ let app = angular.module('2nft', []);
 let controller = app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
   $scope.old_rules_changed = function(obj, $event) {
     let old_rules = obj.old_rules;
-    console.log(old_rules);
 
     var req = {
       method: 'POST',
@@ -17,7 +16,6 @@ let controller = app.controller('MainController', ['$scope', '$http', function (
       }
     }
     $http(req).then(function(res){
-      console.log('new'+res.data);
       $scope.new_rules = res.data;
     }, function(){
     });
