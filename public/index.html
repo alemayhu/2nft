@@ -24,11 +24,11 @@
 				    placeholder="Enter you legacy rules here">
 	</textarea>
       </div>
-      <div>
-	<!-- nft rules -->
-	<textarea readonly ng-if="new_rules.length > 0"
+      <div ng-if="new_rules.length > 0">
+	<textarea readonly
 		    rows="7" cols="200" type="text" ng-model="new_rules">
 	</textarea>
+	<a href="/download/{{rule_id}}">download</a>
       </div>
       <div>
         <h3>Useful Links</h3>

@@ -56,10 +56,12 @@ app.post('/translate', function (req, res) {
     fs.readFile(path, 'utf8', function (err, data) {
       if (err) { // Fall back to no cache
 	a_log(err);
-	res.send(convert(old_rules, req.body.is_debug));
+	res.send(
+	    {id: hash,
+	      rules: convert(old_rules, req.body.is_debug)});
 	return ;
       }
-      res.send(data);
+      res.send({id: hash, rules: data});
       return ;
     });
   } else {
@@ -69,8 +71,19 @@ app.post('/translate', function (req, res) {
 	  a_log(err);
 	}
       });
-    res.send(new_rules);
+    res.send({id: hash, rules: new_rules});
   }
+});
+
+app.get('/download/:hash', function (req, res) {
+  var hash = req.params.hash;
+  var path = "/tmp/"+hash+".txt";
+
+  if (!fs.existsSync(path) || !hash.match("[a-fA-F0-9]{32}")) {
+      res.redirect('/help');
+  }
+  a_log("download request for "+path);
+  res.download(path);
 });
 
 app.get('/version', function(req, res){
