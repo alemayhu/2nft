@@ -1,6 +1,8 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var execSync = require('child_process').execSync;
+var crypto = require('crypto');
+var fs = require('fs');
 
 var app = express();
 
@@ -45,8 +47,30 @@ var convert = function(rules, debug) {
 };
 
 app.post('/translate', function (req, res) {
-  var rules = req.body.old_rules.split("\n");
-  res.send(convert(rules, req.body.is_debug));
+  var data = req.body.old_rules;
+  var hash = crypto.createHash('md5').update(data).digest("hex");
+  var old_rules = data.split("\n");
+  var path = "/tmp/"+hash+".txt";
+
+  if (fs.existsSync(path)) {
+    fs.readFile(path, 'utf8', function (err, data) {
+      if (err) { // Fall back to no cache
+	a_log(err);
+	res.send(convert(old_rules, req.body.is_debug));
+	return ;
+      }
+      res.send(data);
+      return ;
+    });
+  } else {
+    var new_rules = convert(old_rules, req.body.is_debug)
+      fs.writeFile(path, new_rules, function(err) {
+	if (err) {
+	  a_log(err);
+	}
+      });
+    res.send(new_rules);
+  }
 });
 
 app.get('/version', function(req, res){
