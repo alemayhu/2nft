@@ -1,4 +1,4 @@
-let app = angular.module('2nft', []);
+let app = angular.module('2nft', ['monospaced.elastic']);
 
 let controller = app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
   $scope.old_rules_changed = function(obj, $event) {

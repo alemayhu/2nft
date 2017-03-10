@@ -6,6 +6,7 @@
     <title>2nft</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js">
     </script>
+    <script src="elastic.js"></script>
     <script src="app.js"></script>
     <link rel="stylesheet" type="text/css" href="app.css">
   </head>
@@ -17,7 +18,7 @@
       </div>
         <!-- old rules -->
       <div>
-	<textarea 
+	<textarea class="msd-elastic"
             autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"
 	ng-change="old_rules_changed(this)"
     rows="7" cols="200" type="text" ng-model="old_rules" 
@@ -26,7 +27,8 @@
       </div>
       <div>
 	<!-- nft rules -->
-	<textarea readonly ng-if="new_rules.length > 0"
+	<textarea class="msd-elastic"
+        readonly ng-if="new_rules.length > 0"
 		    rows="7" cols="200" type="text" ng-model="new_rules">
 	</textarea>
       </div>
