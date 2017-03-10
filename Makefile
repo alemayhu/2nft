@@ -27,7 +27,7 @@ docker_run: docker
 	docker run -dit -p $(port):3000 ${project}
 docker_push:
 	docker push ${project}
-2nft:
+2nft: docker_deploy
 	docker pull ${project}
 	-docker stop ${hosted}
 	-docker rm ${hosted}
