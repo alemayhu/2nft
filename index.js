@@ -13,6 +13,10 @@ var a_log = function(output) {
   console.log(new Date()+" "+output);
 }
 
+var local_filename = function(hash) {
+  return "/tmp/"+hash+".txt";
+}
+
 var convert = function(rules, debug) {
   var new_rules = '';
   for (var i = 0; i < rules.length; i++) {
@@ -52,7 +56,7 @@ app.post('/translate', function (req, res) {
   var data = req.body.old_rules;
   var hash = crypto.createHash('md5').update(data).digest("hex");
   var old_rules = data.split("\n");
-  var path = "/tmp/"+hash+".txt";
+  var path = local_filename(hash);
 
   if (fs.existsSync(path)) {
     fs.readFile(path, 'utf8', function (err, data) {
@@ -79,7 +83,7 @@ app.post('/translate', function (req, res) {
 
 app.get('/download/:hash', function (req, res) {
   var hash = req.params.hash;
-  var path = "/tmp/"+hash+".txt";
+  var path = local_filename(hash);
 
   if (!hash.match("[a-fA-F0-9]{32}") || !fs.existsSync(path)) {
       a_log("invalid  download  request, redirect to  help for "+hash);
