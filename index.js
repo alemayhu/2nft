@@ -53,7 +53,7 @@ var convert = function(rules, debug) {
 };
 
 app.post('/translate', function (req, res) {
-  var data = req.body.old_rules;
+  var data = req.body.old_rules.replace("\\\n", " ");
   var hash = crypto.createHash('md5').update(data).digest("hex");
   var old_rules = data.split("\n");
   var path = local_filename(hash);
