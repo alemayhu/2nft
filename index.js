@@ -17,27 +17,43 @@ var local_filename = function(hash) {
   return "/tmp/"+hash+".txt";
 }
 
-var convert = function(rules, debug) {
+var convert = function(data, debug) {
+  var rules = data.replace("\\\n", " ").split("\n");
   var new_rules = '';
+  var ignore_prefixes = [
+    "# iptables ",
+    "ip6tables-translate",
+    "iptables"
+  ];
+
   for (var i = 0; i < rules.length; i++) {
     var rule = rules[i];
-    if (rule.startsWith("##")) { continue;
-      // assume this is comment.
-      // TODO: also handle single comment
+
+    for (var j in ignore_prefixes) {
+      var prefix = ignore_prefixes[j];
+      if (rule.startsWith(prefix)) {
+        rule = rule.replace(prefix, "");
+      }
     }
 
-    rule = rule.replace("# ", "")
-      .replace("ip6tables-translate", "")
-      .replace("iptables", "").replace("sudo", "");
-    if (!rule || rule.trim().length == 0) { continue;
-      // We are skipping emtpy lines
+    /* Keep comments
+     */
+    if (rule.startsWith("#")) {
+      new_rules += rule+"\n";
+      continue;
     }
+
+    /* Not translating empty lines, but preserve them in case user wants to do
+     * some kind of grouping.
+     */
+    if (!rule || rule.trim().length == 0) {
+      new_rules += "\n";
+      continue;
+    }
+
     rule = rule.match(/[A-Za-z-_0-9\:\,\.\!\S+\s+/]/g).join("");
 
     var translate_cmd = "exec iptables-translate "+rule;
-    if (debug) {
-      new_rules += "$ "+translate_cmd+"\n";
-    }
     a_log(translate_cmd);
     try {
       new_rules += execSync(translate_cmd);
@@ -49,13 +65,13 @@ var convert = function(rules, debug) {
       new_rules += "# 🚧 "+rule+"\n";
     }
   }
+
   return new_rules;
 };
 
 app.post('/translate', function (req, res) {
-  var data = req.body.old_rules.replace("\\\n", " ");
+  var data = req.body.old_rules;
   var hash = crypto.createHash('md5').update(data).digest("hex");
-  var old_rules = data.split("\n");
   var path = local_filename(hash);
 
   if (fs.existsSync(path)) {
@@ -64,14 +80,14 @@ app.post('/translate', function (req, res) {
 	a_log(err);
 	res.send(
 	    {id: hash,
-	      rules: convert(old_rules, req.body.is_debug)});
+	      rules: convert(data, req.body.is_debug)});
 	return ;
       }
       res.send({id: hash, rules: data});
       return ;
     });
   } else {
-    var new_rules = convert(old_rules, req.body.is_debug)
+    var new_rules = convert(data, req.body.is_debug)
       fs.writeFile(path, new_rules, function(err) {
 	if (err) {
 	  a_log(err);
