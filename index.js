@@ -81,8 +81,10 @@ app.get('/download/:hash', function (req, res) {
   var hash = req.params.hash;
   var path = "/tmp/"+hash+".txt";
 
-  if (!fs.existsSync(path) || !hash.match("[a-fA-F0-9]{32}")) {
+  if (!hash.match("[a-fA-F0-9]{32}") || !fs.existsSync(path)) {
+      a_log("invalid  download  request, redirect to  help for "+hash);
       res.redirect('/help');
+      return ;
   }
   a_log("download request for "+path);
   res.download(path);
