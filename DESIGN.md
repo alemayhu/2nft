@@ -7,7 +7,7 @@ not familiar with JavaScript, the server component here is a [Node.js][n]
 application. The server has three dependencies express, body-parser and
 nodeman. The two former ones are when running the server but the last one is
 only meant for local development. The versions are available in the
-[package.json][./package.json].
+[package.json](./package.json).
 
 
 
