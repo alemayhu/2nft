@@ -5,8 +5,8 @@ application. The Angular app communicates with a server running a small HTTP
 API. The couple of HTTP methods implemented are described below.  If you are
 not familiar with JavaScript, the server component here is a [Node.js][n]
 application. The server has three dependencies express, body-parser and
-nodeman. The two former ones are when running the server but the last one is
-only meant for local development. The versions are available in the
+nodeman. The two former ones are used when running the server but the last one is
+only meant for local development. The exact versions are available in the
 [package.json](./package.json).
 
 
