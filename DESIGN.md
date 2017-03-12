@@ -2,7 +2,7 @@
 
 2nft consists of three parts. The user facing part is a [Angular][a]
 application. The Angular app communicates with a server running a small HTTP
-API. The couple of methods implemented are described in [API][#API].
+API. The couple of methods implemented are described in the API section.
 
 If you are not familiar with JavaScript, the server component here is a
 [Node.js][n] application. The server has three dependencies [Express][e],
