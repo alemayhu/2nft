@@ -61,7 +61,7 @@ var convert = function(data, debug) {
     try {
       new_rules += execSync(translate_cmd);
     } catch (e) {
-      var err_msg = e.message;
+      var err_msg = e.message.replace("Command failed: exec ", "");
       if (debug || err_msg.indexOf(allow_error[0]) != -1) {
         new_rules += "# "+err_msg.split('\n').join(" ")+"\n";
         continue;
