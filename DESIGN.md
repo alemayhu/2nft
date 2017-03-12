@@ -10,7 +10,7 @@ If you are not familiar with JavaScript, the server component here is a
 develop the server and body-parser basically extends it so that we can handle
 incoming requests by parsing the `.body`. nodemon is just a local dependency
 meant for local development.  The exact versions are available in the
-[package.json](./package.json).
+[package.json](https://github.com/alemayhu/2nft/blob/master/package.json).
 
 ### API
 
