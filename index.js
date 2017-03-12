@@ -25,6 +25,9 @@ var convert = function(data, debug) {
     "ip6tables-translate",
     "iptables"
   ];
+  var allow_error = [
+    "Translation not implemented",
+  ];
 
   for (var i = 0; i < rules.length; i++) {
     var rule = rules[i];
@@ -58,8 +61,9 @@ var convert = function(data, debug) {
     try {
       new_rules += execSync(translate_cmd);
     } catch (e) {
-      if (debug) {
-        new_rules += "# "+e.message.split('\n').join(" ")+"\n";
+      var err_msg = e.message;
+      if (debug || err_msg.indexOf(allow_error[0]) != -1) {
+        new_rules += "# "+err_msg.split('\n').join(" ")+"\n";
         continue;
       }
       new_rules += "# 🚧 "+rule+"\n";
