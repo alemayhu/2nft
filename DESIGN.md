@@ -2,15 +2,14 @@
 
 2nft consists of three parts. The user facing part is a [Angular][a]
 application. The Angular app communicates with a server running a small HTTP
-API. The couple of methods implemented are described below.  If you are not
-familiar with JavaScript, the server component here is a [Node.js][n]
-application. The server has three dependencies [Express][e], [body-parser][b]
-and [nodeman][no]. Express is the main framework used to develop the server and
-body-parser basically extends it so that we can handle incoming requests by
-parsing the `.body`. nodemon is just a local dependency meant for local
-development.
+API. The couple of methods implemented are described in [API][#API].
 
-The exact versions are available in the
+If you are not familiar with JavaScript, the server component here is a
+[Node.js][n] application. The server has three dependencies [Express][e],
+[body-parser][b] and [nodeman][no]. Express is the main framework used to
+develop the server and body-parser basically extends it so that we can handle
+incoming requests by parsing the `.body`. nodemon is just a local dependency
+meant for local development.  The exact versions are available in the
 [package.json](./package.json).
 
 ### API
