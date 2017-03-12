@@ -30,4 +30,14 @@ let controller = app.controller('MainController', ['$scope', '$http', function (
     $scope.iptables_version = response.data;
   }, function errorCallback(response) {
   });
+
+  $scope.number_of_rows = function(lines) {
+    var min = 10;
+
+    if (!lines) {
+      return min;
+    }
+    var count = lines.split("\n").length;
+    return count >= min ? count : min;
+  };
 }]);

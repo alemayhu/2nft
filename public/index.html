@@ -20,13 +20,13 @@
 	<textarea 
             autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"
 	ng-change="old_rules_changed(this)"
-    rows="10" cols="200" type="text" ng-model="old_rules"
+ rows="{{ number_of_rows(old_rules) }}" cols="200" type="text" ng-model="old_rules"
 				    placeholder="Enter you legacy rules here">
 	</textarea>
       </div>
       <div ng-if="new_rules.length > 0">
 	<textarea readonly
-		    rows="10" cols="200" type="text" ng-model="new_rules">
+           rows="{{ number_of_rows(new_rules) }}" cols="200" type="text" ng-model="new_rules">
 	</textarea>
 	<a id="download" href="/download/{{rule_id}}">Download</a>
       </div>
