@@ -1,24 +1,60 @@
 FROM node
 
 ENV PKG_CONFIG_PATH "/usr/local/lib/pkgconfig"
-ENV NFT_DEV "/tmp/Scripts/nft-dev"
 ENV APP_DIR "/srv/2nft"
+ENV NETFILTER_DIR "$APP_DIR/netfilter.org"
+ENV GIT_BASE_URL "git://git.netfilter.org"
+
 ENV WEB_USER "tester"
 ENV WEB_USER_HOME "/home/$WEB_USER"
 
+# Install all the dependencies for nftables and friends.
 RUN apt-get update
 RUN apt-get install -y pkg-config git sudo
-
-# Get helper script which helps pull in iptables
-RUN git clone https://github.com/scanf/Scripts /tmp/Scripts
-
-# First install all the dependencies for nftables and friends. Second run clone
-# all the code Third run compile and install all
-RUN $NFT_DEV prepare && $NFT_DEV && $NFT_DEV
+RUN apt-get -y install docbook2x docbook-utils libgmp-dev libreadline-dev
+RUN apt-get install -y autoconf build-essential gcc make autoconf automake
+RUN apt-get install -y libjansson-dev pkg-config zlib1g-dev curl libtool
+RUN apt-get install -y docbook2x docbook-utils bison flex
 
 # Create the application directory
 RUN mkdir $APP_DIR
 WORKDIR $APP_DIR
+
+# Create user to run application and fix the permissions
+RUN useradd -M $WEB_USER
+RUN usermod -L $WEB_USER
+RUN mkdir $WEB_USER_HOME
+RUN chown -R $WEB_USER:$WEB_USER $APP_DIR
+RUN chown -R $WEB_USER:$WEB_USER $WEB_USER_HOME
+
+# Clone, compile and install all the projects.
+USER $WEB_USER
+RUN git clone $GIT_BASE_URL/libmnl $NETFILTER_DIR/libmnl &&\
+      cd $NETFILTER_DIR/libmnl/ && sh autogen.sh  && ./configure &&\
+      make
+USER root
+RUN make -C $NETFILTER_DIR/libmnl install
+
+USER $WEB_USER
+RUN git clone $GIT_BASE_URL/libnftnl $NETFILTER_DIR/libnftnl &&\
+      cd $NETFILTER_DIR/libnftnl/ && sh autogen.sh &&\
+      ./configure --with-json-parsing && make
+USER root
+RUN make -C $NETFILTER_DIR/libnftnl install
+
+USER $WEB_USER
+RUN git clone $GIT_BASE_URL/nftables $NETFILTER_DIR/nftables &&\
+      cd $NETFILTER_DIR/nftables && sh autogen.sh && ./configure && make
+USER root
+RUN make -C $NETFILTER_DIR/nftables install
+
+USER $WEB_USER
+RUN git clone $GIT_BASE_URL/iptables $NETFILTER_DIR/iptables &&\
+cd $NETFILTER_DIR/iptables && sh autogen.sh && ./configure && make
+USER root
+RUN make -C $NETFILTER_DIR/iptables install
+
+USER $WEB_USER
 
 # Copy required source
 COPY package.json $APP_DIR/package.json
@@ -27,16 +63,6 @@ COPY public $APP_DIR/public
 
 # Install the application dependencies
 RUN npm install
-
-# Create user to run application
-RUN mkdir $WEB_USER_HOME
-RUN useradd -M $WEB_USER
-RUN usermod -L $WEB_USER
-
-# Fix the permissions
-RUN mv ~/src/netfilter.org $APP_DIR/netfilter.org
-RUN chown -R $WEB_USER:$WEB_USER $WEB_USER_HOME
-RUN chown -R $WEB_USER:$WEB_USER $APP_DIR
 
 EXPOSE 3000
 
