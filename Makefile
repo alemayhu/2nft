@@ -1,5 +1,5 @@
 iptables_repo ?=git://git.netfilter.org/iptables
-iptables_dir ?=~/src/netfilter.org/iptables
+iptables_dir ?=./netfilter.org/iptables
 project ?=alemayhu/2nft
 port ?= 8080
 hosted =2nft.alemayhu.com
