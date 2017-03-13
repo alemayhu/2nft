@@ -34,10 +34,9 @@ RUN useradd -M $WEB_USER
 RUN usermod -L $WEB_USER
 
 # Fix the permissions
-RUN chown -R $WEB_USER:$WEB_USER ~/src
+RUN mv ~/src/netfilter.org $APP_DIR/netfilter.org
 RUN chown -R $WEB_USER:$WEB_USER $WEB_USER_HOME
 RUN chown -R $WEB_USER:$WEB_USER $APP_DIR
-RUN mv ~/src $WEB_USER_HOME
 
 EXPOSE 3000
 
