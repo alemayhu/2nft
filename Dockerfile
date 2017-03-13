@@ -16,6 +16,9 @@ RUN apt-get install -y autoconf build-essential gcc make autoconf automake
 RUN apt-get install -y libjansson-dev pkg-config zlib1g-dev curl libtool
 RUN apt-get install -y docbook2x docbook-utils bison flex
 
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Create the application directory
 RUN mkdir $APP_DIR
 WORKDIR $APP_DIR
