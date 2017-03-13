@@ -24,9 +24,9 @@ The server consists of four GET and one POST methods.
 - GET  `/werbinich` - returns `whoami` output.
 
 As you might have guessed, the third part is forwarding all the rules to
-[iptables-translate][i].  The server uses a child process to execute to
-`iptables-translate` with the POSTed values. Some input sanitizing is applied to
-prevent the user from abusing the system.
+[iptables-translate][i].  The server uses a child process to execute commands
+with the POSTed values. Some input sanitizing is applied to prevent the user
+from abusing the system.
 
 [a]: https://angularjs.org/
 [e]: https://expressjs.com/ 
