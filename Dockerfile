@@ -9,15 +9,11 @@ ENV WEB_USER "tester"
 ENV WEB_USER_HOME "/home/$WEB_USER"
 
 # Install all the dependencies for nftables and friends.
-RUN apt-get update
-RUN apt-get install -y pkg-config git sudo
-RUN apt-get -y install docbook2x docbook-utils libgmp-dev libreadline-dev
-RUN apt-get install -y autoconf build-essential gcc make autoconf automake
-RUN apt-get install -y libjansson-dev pkg-config zlib1g-dev curl libtool
-RUN apt-get install -y docbook2x docbook-utils bison flex
-
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update && apt-get install --no-install-recommends -y pkg-config \
+docbook2x docbook-utils libgmp-dev libreadline-dev autoconf build-essential \
+gcc make autoconf automake libjansson-dev pkg-config zlib1g-dev curl libtool \
+docbook2x docbook-utils bison flex && apt-get clean &&\
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Create the application directory
 RUN mkdir $APP_DIR
