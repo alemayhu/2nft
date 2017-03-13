@@ -38,6 +38,10 @@ let controller = app.controller('MainController', ['$scope', '$http', function (
       return min;
     }
     var count = lines.split("\n").length;
-    return count >= min ? count : min;
+
+    if (count < min)
+      count = min;
+
+    return Math.min(count, 35);
   };
 }]);
