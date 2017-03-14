@@ -18,7 +18,6 @@ var local_filename = function(hash) {
 }
 
 var convert = function(data, debug) {
-  var allow_error = [ "Translation not implemented" ];
   var ignore_prefixes = [ "iptables", "ip6tables" ];
   var rules = data.replace("\\\n", " ").split("\n");
   var new_rules = '';
@@ -58,11 +57,8 @@ var convert = function(data, debug) {
       new_rules += execSync(translate_cmd);
     } catch (e) {
       var err_msg = e.message.replace("Command failed: exec ", "");
-      if (debug || err_msg.indexOf(allow_error[0]) != -1) {
-        new_rules += "# "+err_msg.split('\n').join(" ")+"\n";
-        continue;
-      }
-      new_rules += "# 🚧 "+rule+"\n";
+      err_msg = err_msg.replace("Try `iptables-translate -h' or 'iptables-translate --help' for more information.", "");
+      new_rules += "# "+err_msg.split('\n').join(" ")+"\n";
     }
   }
 
