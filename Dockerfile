@@ -54,7 +54,6 @@ USER root
 RUN make -C $NETFILTER_DIR/iptables install
 
 USER $WEB_USER
-
 # Copy required source
 COPY package.json $APP_DIR/package.json
 COPY index.js $APP_DIR/index.js
@@ -64,6 +63,4 @@ COPY public $APP_DIR/public
 RUN npm install
 
 EXPOSE 3000
-
-USER $WEB_USER
 CMD ["npm", "start"]
