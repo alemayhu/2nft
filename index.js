@@ -18,23 +18,19 @@ var local_filename = function(hash) {
 }
 
 var convert = function(data, debug) {
+  var allow_error = [ "Translation not implemented" ];
+  var ignore_prefixes = [ "iptables", "ip6tables" ];
   var rules = data.replace("\\\n", " ").split("\n");
   var new_rules = '';
-  var ignore_prefixes = [
-    "# iptables ",
-    "ip6tables-translate",
-    "iptables"
-  ];
-  var allow_error = [
-    "Translation not implemented",
-  ];
 
   for (var i = 0; i < rules.length; i++) {
     var rule = rules[i];
 
     for (var j in ignore_prefixes) {
       var prefix = ignore_prefixes[j];
-      if (rule.startsWith(prefix)) {
+      if (rule.startsWith(prefix)
+          || rule.startsWith("# "+prefix)
+          || rule.startsWith(prefix+"-translate")) {
         rule = rule.replace(prefix, "");
       }
     }
