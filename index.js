@@ -26,11 +26,10 @@ var convert = function(data, debug) {
 
     for (var j in ignore_prefixes) {
       var prefix = ignore_prefixes[j];
-      if (rule.startsWith(prefix)
-          || rule.startsWith("# "+prefix)
-          || rule.startsWith(prefix+"-translate")) {
-        rule = rule.replace(prefix, "");
-      }
+
+      rule = rule.replace(prefix+"-translate", "");
+      rule = rule.replace("# "+prefix, "");
+      rule = rule.replace(prefix, "");
     }
 
     /* Keep comments
