@@ -47,7 +47,7 @@ var convert = function(data, debug) {
       continue;
     }
 
-    rule = rule.match(/[A-Za-z-_0-9:,.!\s+/]/g).join("");
+    rule = rule.match(/[A-Za-z-_0-9:,."!\s+/]/g).join("");
 
     var translate_cmd = "exec iptables-translate "+rule;
     a_log(translate_cmd);
