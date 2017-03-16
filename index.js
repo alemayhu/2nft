@@ -50,6 +50,7 @@ var convert = function(data, debug) {
     }
 
     rule = rule.match(/[A-Za-z-_0-9\:\,\.\!\S+\s+/]/g).join("");
+    rule = rule.replace("|", "");
 
     var translate_cmd = "exec iptables-translate "+rule;
     a_log(translate_cmd);
