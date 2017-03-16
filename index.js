@@ -1,9 +1,8 @@
+var execSync = require('child_process').execSync;
 var bodyParser = require('body-parser');
 var express = require('express');
-var execSync = require('child_process').execSync;
 var crypto = require('crypto');
 var fs = require('fs');
-
 var app = express();
 
 app.use(express.static('public'))
