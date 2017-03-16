@@ -18,7 +18,7 @@ var local_filename = function(hash) {
 
 var convert = function(data, debug) {
   var ignore_prefixes = [ "iptables", "ip6tables" ];
-  var rules = data.replace("\\\n", " ").split("\n");
+  var rules = data.replace(/\\\n/g, " ").split("\n");
   var new_rules = '';
 
   for (var i = 0; i < rules.length; i++) {
