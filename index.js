@@ -14,7 +14,8 @@ var a_log = function(output) {
 }
 
 var local_filename = function(hash) {
-  return "/tmp/"+hash+".txt";
+  var dir = app.get('STORAGE_DIR') || "/tmp";
+  return dir+"/"+hash+".txt";
 }
 
 var convert = function(data, debug) {
