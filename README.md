@@ -4,6 +4,12 @@ web application to let you translate your legacy rules to [nftables][0] via
 iptables-translate. If you are interested in how the application is structured
 there is more information in [Design](./DESIGN.md).
 
+## Demo
+
+The latest version should be running on
+[2nft.alemayhu.com](https://2nft.alemayhu.com/), but if you are stuck with a
+redirect try [dokku.alemayhu.com](http://dokku.alemayhu.com/).
+
 ## Install
 
 You have two options using Docker or npm.
