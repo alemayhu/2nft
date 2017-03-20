@@ -11,8 +11,7 @@
   </head>
   <body ng-controller="MainController">
     <div>
-      <h1>2nft</h1>
-      <p>
+      <h1>2nft<small ng-if="app_version != 'xyz'"> - v{{ app_version }}</small></h1>
         <strong ng-if="iptables_version != 'xyz'">using iptables-translate {{ iptables_version }}</strong>
       </p>
         <!-- old rules -->

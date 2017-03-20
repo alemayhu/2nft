@@ -14,12 +14,13 @@ meant for local development.  The exact versions are available in the
 
 ### API
 
-The server consists of four GET and one POST methods.
+The server consists of five GET and one POST methods.
 
 - POST `/translate` - runs `iptables-translate <input>` returns new rules and
   hash which can be used for downloading the file.
 - GET  `/download/:hash` - sends the file if it exists or redirects to `/help`.
 - GET  `/version` - returns iptables revision from git output.
+- GET  `/app_version` - returns version from package.json.
 - GET  `/help` - returns `iptables-translate --help` output.
 - GET  `/werbinich` - returns `whoami` output.
 

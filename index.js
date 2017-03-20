@@ -1,5 +1,6 @@
 var execSync = require('child_process').execSync;
 var bodyParser = require('body-parser');
+var pjson = require('./package.json');
 var express = require('express');
 var crypto = require('crypto');
 var fs = require('fs');
@@ -102,6 +103,10 @@ app.get('/download/:hash', function (req, res) {
   }
   a_log("download request for "+path);
   res.download(path);
+});
+
+app.get('/app_version', function(req, res){
+  res.send(pjson.version);
 });
 
 app.get('/version', function(req, res){

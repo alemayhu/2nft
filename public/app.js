@@ -31,6 +31,15 @@ let controller = app.controller('MainController', ['$scope', '$http', function (
   }, function errorCallback(response) {
   });
 
+  $scope.app_version = "xyz";
+  $http({
+    method: 'GET',
+    url: '/app_version'
+  }).then(function successCallback(response) {
+    $scope.app_version = response.data;
+  }, function errorCallback(response) {
+  });
+
   $scope.number_of_rows = function(lines) {
     var min = 10;
 
