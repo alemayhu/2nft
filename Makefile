@@ -35,3 +35,6 @@ docker_push:
 ttd:
 	-docker stop `docker ps |grep ${port}|awk '{ print $$1 }'`
 	$(MAKE) docker_run
+
+update-package-info:
+	scripts/gen-package-meta > package.json
