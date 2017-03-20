@@ -1,7 +1,7 @@
 {
   "name": "2nft",
   "version": "0.0.1",
-  "description": "print out nft monitor",
+  "description": "web application to use iptables-translate",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.17.1",
