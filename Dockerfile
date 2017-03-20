@@ -55,6 +55,7 @@ RUN make -C $NETFILTER_DIR/iptables install
 
 USER $WEB_USER
 # Copy required source
+ADD CHECKS /app/CHECKS
 COPY package.json $APP_DIR/package.json
 COPY index.js $APP_DIR/index.js
 COPY public $APP_DIR/public
