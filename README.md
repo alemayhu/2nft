@@ -22,7 +22,7 @@ You have two options using Docker or npm.
 
 ### [Docker](https://www.docker.com/)
 
-    docker run -dit -p 3000:3000 alemayhu/2nft
+    port=3000 make_docker_run
 
 Application should be running on `http://localhost:3000`.
 
