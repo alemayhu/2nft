@@ -22,7 +22,7 @@ You have two options using Docker or npm.
 
 ### [Docker](https://www.docker.com/)
 
-    port=3000 make_docker_run
+    port=3000 make docker_run
 
 Application should be running on `http://localhost:3000`.
 
