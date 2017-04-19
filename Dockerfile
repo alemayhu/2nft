@@ -1,5 +1,7 @@
 FROM node
 
+LABEL "version: 0.0.1-7-gc594f18f4525"
+
 ENV PKG_CONFIG_PATH "/usr/local/lib/pkgconfig"
 ENV APP_DIR "/srv/2nft"
 ENV NETFILTER_DIR "$APP_DIR/netfilter.org"
