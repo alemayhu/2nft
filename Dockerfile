@@ -1,6 +1,7 @@
 FROM node
 
 LABEL "version: 0.0.1-7-gc594f18f4525"
+LABEL "iptables: c29d99c83d95 (libxtables: Display weird character warning for wildcards, 2017-05-05)""
 
 ENV PKG_CONFIG_PATH "/usr/local/lib/pkgconfig"
 ENV APP_DIR "/srv/2nft"
