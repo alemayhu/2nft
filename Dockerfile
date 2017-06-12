@@ -1,7 +1,7 @@
 FROM node
 
 LABEL "version: 0.0.1-7-gc594f18f4525"
-LABEL "c49a93f18e03 (xtables-translate: fix double space before comment, 2017-06-06)"
+LABEL "79e1edd1e5a0 (iptables-xml: Fix segfault on jump without a target, 2017-06-02)"
 
 ENV PKG_CONFIG_PATH "/usr/local/lib/pkgconfig"
 ENV APP_DIR "/srv/2nft"
