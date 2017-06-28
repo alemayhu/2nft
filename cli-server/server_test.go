@@ -36,7 +36,12 @@ func TestVersion(t *testing.T) {
 }
 
 func TestDownload(t *testing.T) {
-	t.Fatal("To be implemented")
+	actual := Download("88c288f665c8b590da3c13f04c845ad78b173720")
+	actual = strings.Replace(actual, "\n", "", -1)
+	expected := "nft flush chain ip filter  febx01"
+	if expected != actual {
+		t.Fatalf("Expected [%s] got [%s]", expected, actual)
+	}
 }
 
 func TestHelp(t *testing.T) {
