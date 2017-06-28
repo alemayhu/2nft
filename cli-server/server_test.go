@@ -1,21 +1,25 @@
 package main
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 func TestTranslate(t *testing.T) {
 	expect := []string{
-		"nft flush chain ip filter febx01"}
+		"nft flush chain ip filter  febx01"}
 	input := []string{
 		"-F febx01"}
-	sums := []string {
-		"b3460ee316c1644c1673f157c06f10c77511a0aa"}
-
+	sums := []string{
+		"88c288f665c8b590da3c13f04c845ad78b173720"}
 
 	for i := 0; i < len(expect); i++ {
 		expected := expect[i]
 		actual, sha := Translate(input[i])
+
+		actual = strings.Replace(actual, "\n", "", -1)
 		if expected != actual {
-			t.Fatalf("Expected %s got %s", expected, actual)
+			t.Fatalf("Expected [%s] got [%s]", expected, actual)
 		}
 		if sha != sums[i] {
 			t.Fatalf("SHA mismatch, expected %s got %s", sums[i], sha)
