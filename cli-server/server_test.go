@@ -27,11 +27,15 @@ func TestTranslate(t *testing.T) {
 	}
 }
 
-func TestDownload(t *testing.T) {
-	t.Fatal("To be implemented")
+func TestVersion(t *testing.T) {
+	v := iptablesVersion()
+
+	if !strings.HasPrefix(v, "v") {
+		t.Fatalf("unsupported version %s", v)
+	}
 }
 
-func TestVersion(t *testing.T) {
+func TestDownload(t *testing.T) {
 	t.Fatal("To be implemented")
 }
 
