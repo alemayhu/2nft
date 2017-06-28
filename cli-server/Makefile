@@ -2,4 +2,4 @@ vbox:
 	vagrant up --provider virtualbox
 
 test:
-	go test
+	go test -v
