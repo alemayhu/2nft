@@ -13,3 +13,7 @@ func CmdOutput(path string, arg ...string) string {
 	}
 	return fmt.Sprintf("%s", out)
 }
+
+func WhoAmI() string {
+	return CmdOutput("/usr/bin/whoami")
+}

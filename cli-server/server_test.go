@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/alemayhu/2nft/cli-server/iptables"
+	"github.com/alemayhu/2nft/cli-server/utils"
 	"strings"
 	"testing"
 )
@@ -18,17 +20,14 @@ func TestTranslate(t *testing.T) {
 		actual, sha := Translate(input[i])
 
 		actual = strings.Replace(actual, "\n", "", -1)
-		if expected != actual {
-			t.Fatalf("Expected [%s] got [%s]", expected, actual)
-		}
-		if sha != sums[i] {
-			t.Fatalf("SHA mismatch, expected %s got %s", sums[i], sha)
-		}
+		utils.Equals(expected, actual, t)
+
+		utils.Equals(sha, sums[i], t)
 	}
 }
 
 func TestVersion(t *testing.T) {
-	v := iptablesVersion()
+	v := iptables.Version()
 
 	if !strings.HasPrefix(v, "v") {
 		t.Fatalf("unsupported version %s", v)
@@ -39,15 +38,19 @@ func TestDownload(t *testing.T) {
 	actual := Download("88c288f665c8b590da3c13f04c845ad78b173720")
 	actual = strings.Replace(actual, "\n", "", -1)
 	expected := "nft flush chain ip filter  febx01"
-	if expected != actual {
-		t.Fatalf("Expected [%s] got [%s]", expected, actual)
-	}
+	utils.Equals(expected, actual, t)
 }
 
 func TestHelp(t *testing.T) {
-	t.Fatal("To be implemented")
+	actual := len(iptables.Help())
+	expected := 2878
+
+	utils.Equals(expected, actual, t)
 }
 
 func TestWerBinIch(t *testing.T) {
-	t.Fatal("To be implemented")
+	actual := len(utils.WhoAmI())
+	if actual < 1 {
+		t.Fatalf("expected a longer username: %v", actual)
+	}
 }

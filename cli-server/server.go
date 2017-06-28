@@ -7,12 +7,9 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/alemayhu/2nft/cli-server/iptables"
 	"github.com/alemayhu/2nft/cli-server/utils"
 )
-
-func iptablesTranslate(rule string) string {
-	return utils.CmdOutput("/usr/local/sbin/iptables-translate", rule)
-}
 
 // Translate runs iptables-translate with the input and returns new rules and a
 // hash which can be used for downloading the file later.
@@ -25,7 +22,7 @@ func Translate(input string) (string, string) {
 		return Download(sum), sum
 	}
 
-	translated := iptablesTranslate(input)
+	translated := iptables.Translate(input)
 	utils.CacheString(translated, sum)
 
 	return translated, sum
@@ -38,11 +35,4 @@ func Download(sha string) string {
 		return ""
 	}
 	return string(content)
-}
-
-func iptablesVersion() string {
-	return utils.CmdOutput(
-		"/usr/bin/git", "-C",
-		"/home/ubuntu/src/netfilter.org/iptables",
-		"describe")
 }
