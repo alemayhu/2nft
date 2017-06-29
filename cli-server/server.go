@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
+	"net/http"
 	"os"
 
 	"github.com/alemayhu/2nft/cli-server/iptables"
@@ -35,4 +37,17 @@ func Download(sha string) string {
 		return ""
 	}
 	return string(content)
+}
+
+func main() {
+	http.HandleFunc("/werbinich", whoAmIHandler)
+	http.HandleFunc("/help", helpHandler)
+	http.HandleFunc("/", helpHandler)
+	http.HandleFunc("/version", versionHandler)
+	http.HandleFunc("/download/", downloadHandler)
+	http.HandleFunc("/translate", translateHandler)
+
+	if err := http.ListenAndServe(":8089", nil); err != nil {
+		log.Fatal(err)
+	}
 }

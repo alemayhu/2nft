@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/alemayhu/2nft/cli-server/iptables"
-	"github.com/alemayhu/2nft/cli-server/utils"
 	"strings"
 	"testing"
+
+	"github.com/alemayhu/2nft/cli-server/iptables"
+	"github.com/alemayhu/2nft/cli-server/utils"
 )
 
 func TestTranslate(t *testing.T) {
