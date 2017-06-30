@@ -1,1 +1,2 @@
 - Add endpoint for listing all available endpoints.
+- Rename `cli-server` to `server`
