@@ -17,6 +17,7 @@ run: all
 	./cli-server
 
 docker:
+	docker pull alemayhu/iptables-docker
 	docker build -t ${project} .
 docker_deploy: docker docker_push
 	echo "Pushed to docker"
