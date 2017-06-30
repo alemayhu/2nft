@@ -15,5 +15,6 @@ vtt:
 	vagrant reload
 	vagrant ssh
 vnginx:
+	sudo cp hosts /etc/hosts
 	sudo cp 2nft.conf /etc/nginx/sites-enabled/default 
 	sudo systemctl restart nginx

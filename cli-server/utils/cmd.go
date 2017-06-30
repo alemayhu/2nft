@@ -8,7 +8,7 @@ import (
 func CmdOutput(path string, arg ...string) string {
 	out, err := exec.Command(path, arg...).Output()
 	if err != nil {
-		fmt.Printf("Error %s", err)
+		fmt.Printf("Error %s\n", err)
 	}
 	return fmt.Sprintf("%s", out)
 }

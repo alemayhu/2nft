@@ -10,7 +10,8 @@ import (
 
 func TestTranslate(t *testing.T) {
 	expect := []string{
-		"nft flush chain ip filter  febx01"}
+		"nft flush chain ip filter  febx01",
+	}
 	input := []string{
 		"-F febx01"}
 	sums := []string{
@@ -27,10 +28,33 @@ func TestTranslate(t *testing.T) {
 	}
 }
 
+func TestMultipleLines(t *testing.T) {
+	input := []string{
+		"# iptables -F",
+		"# iptables -X",
+		"# iptables -t nat -F",
+		"# iptables -t nat -X",
+		"# iptables -t mangle -F",
+		"# iptables -t mangle -X",
+	}
+	output := []string{
+		"nft flush table ip filter\n",
+		"nft delete chain ip filter (null)\n",
+		"nft flush table ip nat\n",
+		"nft delete chain ip nat (null)\n",
+		"nft flush table ip mangle\n",
+		"nft delete chain ip mangle (null)\n",
+	}
+
+	for i := 0; i < len(input); i++ {
+		utils.Equals(output[i], iptables.Translate(input[i]), t)
+	}
+}
+
 func TestVersion(t *testing.T) {
 	v := iptables.Version()
 
-	if !strings.HasPrefix(v, "v") {
+	if !strings.Contains(v, "iptables-translate v") {
 		t.Fatalf("unsupported version %s", v)
 	}
 }
