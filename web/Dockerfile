@@ -31,5 +31,5 @@ COPY public $APP_DIR/public
 # Install the application dependencies
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 80
 CMD ["npm", "start"]

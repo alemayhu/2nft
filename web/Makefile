@@ -18,14 +18,14 @@ docker_nocache:
 docker_deploy: docker docker_push
 	echo "Pushed to docker, https://hub.docker.com/r/${project}"
 docker_run: docker_clean docker
-	docker run --name 2nft.web -dit -p $(port):3000 ${project}
+	docker run --name 2nft.web -dit -p $(port):80 ${project}
 docker_push:
 	docker push ${project}
 2nft: docker_deploy
 	docker pull ${project}
 	-docker stop ${hosted}
 	-docker rm ${hosted}
-	docker run -p 7000:3000 --name=${hosted} -m 256m -d ${project}
+	docker run -p 7000:80 --name=${hosted} -m 256m -d ${project}
 ttd:
 	-docker stop `docker ps |grep ${port}|awk '{ print $$1 }'`
 	$(MAKE) docker_run
