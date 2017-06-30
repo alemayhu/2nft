@@ -9,8 +9,11 @@ docker:
 vps:
 	VBoxManage list runningvms
 vbox:
-	-vagrant destroy
+	-vagrant destroy -f
 	vagrant up --provider=virtualbox
 vtt:
 	vagrant reload
 	vagrant ssh
+vnginx:
+	sudo cp 2nft.conf /etc/nginx/sites-enabled/default 
+	sudo systemctl restart nginx
