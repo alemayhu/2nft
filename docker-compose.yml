@@ -1,0 +1,10 @@
+version: '2'
+services:
+  2nft.web:
+    image: "alemayhu/2nft"
+    ports:
+      - "8080:80"
+  2nft.server:
+    image: "alemayhu/2nft-cli-server"
+    ports:
+      - "8089:80"
