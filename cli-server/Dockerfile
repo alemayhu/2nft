@@ -14,5 +14,5 @@ apt-get purge -y golang git sudo && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-EXPOSE 8089
+EXPOSE 80
 ENTRYPOINT ["/srv/server"]

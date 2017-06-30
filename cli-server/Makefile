@@ -25,7 +25,7 @@ docker_clean:
 docker_deploy: docker docker_push
 	echo "Pushed to docker"
 docker_run: docker_clean docker
-	docker run --name 2nft.server -p 8089:8089  -d -i ${project} /bin/bash
+	docker run --name 2nft.server -p 8089:80  -d -i ${project} /bin/bash
 docker_push:
 	docker push ${project}
 docker_shell:

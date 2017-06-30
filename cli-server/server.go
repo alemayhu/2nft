@@ -47,7 +47,7 @@ func main() {
 	http.HandleFunc("/download/", downloadHandler)
 	http.HandleFunc("/translate", translateHandler)
 
-	if err := http.ListenAndServe(":8089", nil); err != nil {
+	if err := http.ListenAndServe(":80", nil); err != nil {
 		log.Fatal(err)
 	}
 }
