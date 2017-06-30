@@ -19,11 +19,12 @@ run: all
 docker:
 	docker pull alemayhu/iptables-docker
 	docker build -t ${project} .
-docker_deploy: docker docker_push
-	echo "Pushed to docker"
-docker_run: docker
+docker_clean:
 	-docker stop 2nft.server
 	-docker rm 2nft.server
+docker_deploy: docker docker_push
+	echo "Pushed to docker"
+docker_run: docker_clean docker
 	docker run --name 2nft.server -p 8089:8089  -d -i ${project} /bin/bash
 docker_push:
 	docker push ${project}

@@ -9,13 +9,15 @@ setup:
 
 docker:
 	docker build -t ${project} .
+docker_clean:
+	-docker stop 2nft.web
+	-docker rm 2nft.web
+
 docker_nocache:
 	docker build --no-cache=true -t ${project} .
 docker_deploy: docker docker_push
 	echo "Pushed to docker, https://hub.docker.com/r/${project}"
-docker_run: docker
-	-docker stop 2nft.web
-	-docker rm 2nft.web
+docker_run: docker_clean docker
 	docker run --name 2nft.web -dit -p $(port):3000 ${project}
 docker_push:
 	docker push ${project}

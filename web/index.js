@@ -8,8 +8,4 @@ app.get('/version', function(req, res){
   res.send(pjson.version);
 });
 
-app.get('*', function(req, res) {
-      res.redirect('/');
-});
-
 app.listen(3000);
