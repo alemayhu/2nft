@@ -10,9 +10,7 @@ func Translate(rule string) string {
 // Version returns the version information with SCM revision.
 func Version() string {
 	return utils.CmdOutput(
-		"/usr/bin/git", "-C",
-		"/home/ubuntu/src/netfilter.org/iptables",
-		"describe")
+		"/bin/cat", "/etc/IPTABLES_VERSION")
 }
 
 // Help returns the iptables help output.
