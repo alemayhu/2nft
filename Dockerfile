@@ -1,7 +1,7 @@
 FROM node
 
-LABEL "version: 0.0.1-7-gc594f18f4525"
-LABEL "1c32e5606fdf (netfilter: xt_hashlimit: add rate match mode, 2017-08-18)"
+LABEL version "0.0.1-7-gc594f18f4525"
+LABEL rev "1c32e5606fdf (netfilter: xt_hashlimit: add rate match mode, 2017-08-18)"
 
 ENV PKG_CONFIG_PATH "/usr/local/lib/pkgconfig"
 ENV APP_DIR "/srv/2nft"
