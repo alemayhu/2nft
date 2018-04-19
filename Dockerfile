@@ -1,4 +1,4 @@
-FROM node
+FROM node:9.11.1
 
 LABEL version "0.0.1-7-gc594f18f4525"
 LABEL rev "1c32e5606fdf (netfilter: xt_hashlimit: add rate match mode, 2017-08-18)"
