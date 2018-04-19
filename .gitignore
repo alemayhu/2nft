@@ -61,3 +61,5 @@ typings/
 *.swp
 
 .vagrant
+
+.DS_Store
