@@ -1,23 +1,22 @@
 let app = angular.module('2nft', []);
 
 let controller = app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
+
+  // let api_url = "http://2nft.server";
+    let api_url = "http://localhost:8089";
+
   $scope.old_rules_changed = function(obj, $event) {
     let old_rules = obj.old_rules;
 
     var req = {
       method: 'POST',
-      url: '/translate',
-      headers: {
-	'Content-Type': 'application/json'
-      },
-      data: {
-        old_rules: old_rules,
-        is_debug: false
-      }
-    }
+      url: api_url+'/translate',
+      data: old_rules
+    };
+
     $http(req).then(function(res){
-      $scope.new_rules = res.data.rules;
-      $scope.rule_id = res.data.id;
+      $scope.new_rules = res.data;
+      $scope.rule_id = 0; //FIXME
     }, function(){
     });
   };
@@ -25,7 +24,7 @@ let controller = app.controller('MainController', ['$scope', '$http', function (
   $scope.iptables_version = "xyz";
   $http({
     method: 'GET',
-    url: '/version'
+    url: api_url+'/version'
   }).then(function successCallback(response) {
     $scope.iptables_version = response.data;
   }, function errorCallback(response) {
