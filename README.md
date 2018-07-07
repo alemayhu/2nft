@@ -16,6 +16,8 @@ You have two options using Docker or npm.
 
 ### [npm](https://www.npmjs.com/)
 
+This will only work on Linux due to dependencies.
+
     make iptables
     make setup
     make serve
