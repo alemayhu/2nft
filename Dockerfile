@@ -15,7 +15,7 @@ ENV WEB_USER_HOME "/home/$WEB_USER"
 RUN apt-get update && apt-get install --no-install-recommends -y pkg-config \
 docbook2x docbook-utils libgmp-dev libreadline-dev autoconf build-essential \
 gcc make autoconf automake libjansson-dev pkg-config zlib1g-dev curl libtool \
-docbook2x docbook-utils bison flex && apt-get clean &&\
+docbook2x docbook-utils bison flex asciidoc && apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Create the application directory
